@@ -10,6 +10,8 @@ def main():
         data_dict[key] = data_loader.load_json(item)
 
     icbf_occ_model = ICBF_OCC(train_df=data_dict["train"],test_df=data_dict["test"])
+    # result = icbf_occ_model.execute_recommendation()
+
 
 if __name__ == '__main__':
     main()

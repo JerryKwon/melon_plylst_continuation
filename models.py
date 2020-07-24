@@ -1,18 +1,21 @@
+#-*- coding:utf-8 -*-
 from collections import Counter
 import numpy as np
 import pandas as pd
 import scipy.sparse as spr
-from tqdm.notebook import tqdm
+from tqdm import tqdm
 
 class ICBF_OCC:
     def __init__(self, train_df, test_df):
         self.train = train_df
         self.test = test_df
 
-    def __main__(self):
+    def execute_recommendation(self):
 
         plylst_train, plylst_test, train_songs_A, train_tags_A, song_dict, tag_dict, plylst_nid_id, song_sid_id, tag_tid_id = self.clean_b4_train()
-        result = self.train(plylst_train,plylst_test,train_songs_A,train_tags_A, song_dict, tag_dict, plylst_nid_id, song_sid_id, tag_tid_id)
+        result = self.predict(plylst_train,plylst_test,train_songs_A,train_tags_A, song_dict, tag_dict, plylst_nid_id, song_sid_id, tag_tid_id)
+
+        return result
 
     def clean_b4_train(self):
         train, test = self.train, self.test
@@ -83,7 +86,7 @@ class ICBF_OCC:
         return plylst_train, plylst_test, train_songs_A, train_tags_A, song_dict, tag_dict, plylst_nid_id, song_sid_id, tag_tid_id
 
 
-    def train(self, train_df, test_df, train_songs_mat, train_tags_mat, song_dic, tag_dic, plylst_nid_id_dic, song_sid_id_dic, tag_tid_id_dic):
+    def predict(self, train_df, test_df, train_songs_mat, train_tags_mat, song_dic, tag_dic, plylst_nid_id_dic, song_sid_id_dic, tag_tid_id_dic):
 
         train = train_df
         test = test_df

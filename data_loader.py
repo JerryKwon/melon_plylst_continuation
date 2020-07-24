@@ -15,7 +15,7 @@ class DATA_LOADER:
 
         if os_env == 'Linux':
             self.path = os.path.abspath(os.path.dirname(os.path.abspath('__file__'))) + '/data/'
-        elif os.name == 'Windows':
+        elif os_env == 'Windows':
             self.path = os.path.abspath(os.path.dirname(os.path.abspath('__file__'))) + '\data\\'
 
     def write_json(self, data, fname):
@@ -24,16 +24,20 @@ class DATA_LOADER:
                 return int(o)
             raise TypeError
 
-        with io.open(self.path + fname, "w", encoding="utf8") as f:
+        with io.open(self.path + fname, "w", encoding="UTF-8") as f:
             json_str = json.dumps(data, ensure_ascii=False, default=_conv)
             f.write(json_str)
 
     def load_json(self, fname):
-        with open(fname, encoding='utf8') as f:
-            # json_obj = json.load(f)
-            pd_obj= pd.read_json(self.path+fname)
+        file_name = self.path + fname
+        with open(file_name,"r",encoding='UTF-8') as f:
+            json_obj = json.load(f)
+        return json_obj
 
-        # return json_obj
+    def load_json_to_pandas(self,fname):
+        file_name = self.path + fname
+        pd_obj = pd.read_json(file_name, encoding='utf-8')
+
         return pd_obj
 
     def debug_json(self, r):
