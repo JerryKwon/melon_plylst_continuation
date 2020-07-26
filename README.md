@@ -57,9 +57,9 @@ https://arena.kakao.com/c/7
 
 <h2 id="execution"> :exclamation: 실행 </h2>
 
-<h3><U>**※주의**</U></h3>
+<h3><u><b>※주의</b></u></h3>
 해당 프로젝트는 Windows, Linux 환경 모두에서 실행될 수 있도록 만들어졌으나, 시간 상의 이유로 Windows만 구동 테스트를 완료하였습니다.
-<U>**따라서, Windows 환경에서 실행해야 합니다.**</U>
+<u><b>따라서, Windows 환경에서 실행해야 합니다.</b></u>
 
 <h3>사용 패키지</h3>
 * Python3 내장 패키지<br/>
@@ -78,7 +78,8 @@ argparse, warnings, json, io, platform, os, collections
 </ol>
 
 <h3>실행법</h3>
-* inference.py
+
+* inference.py <br/>
     1. 설명 <br/>
     주어진 데이터를 활용하여 예측을 수행하는 python 파일
     2. 실행 <br/>
