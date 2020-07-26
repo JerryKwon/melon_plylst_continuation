@@ -1,17 +1,18 @@
 #-*- coding:utf-8 -*-
+import warnings
+import platform
+import os
 from collections import Counter, OrderedDict
+
 import numpy as np
 import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn import preprocessing as pp
 import scipy.sparse as spr
 from tqdm import tqdm
 import nltk
 from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import TfidfVectorizer
-import sklearn.preprocessing as pp
-import warnings
 from selenium import webdriver
-import platform
-import os
 
 class HYBRID_CBF_ICBF:
     def __init__(self, train_df, test_df):

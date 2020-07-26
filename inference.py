@@ -1,8 +1,10 @@
-from models import ICBF_OCC,HYBRID_CBF_ICBF
-from data_loader import DATA_LOADER
-from tqdm import tqdm
 import argparse
 import warnings
+
+from tqdm import tqdm
+
+from models import ICBF_OCC,HYBRID_CBF_ICBF
+from data_loader import DATA_LOADER
 
 def str2bool(v):
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
@@ -34,20 +36,22 @@ def main():
 
     if is_vaild:
         target = data_dict["val"]
+        target_str = "valid"
     else:
         target = data_dict["test"]
+        target_str = "test"
 
 
     if model_type == "icbf":
         icbf_model = ICBF_OCC(train_df=data_dict["train"],test_df=target)
         icbf_rcomm_result = icbf_model.execute_recommendation()
-        data_loader.write_json(icbf_rcomm_result,'icbf_rcomm_results.json')
+        data_loader.write_json(icbf_rcomm_result, target_str+'_icbf_rcomm_results.json')
 
 
     if model_type == "hybrid":
         hybrid_model = HYBRID_CBF_ICBF(train_df=data_dict["train"], test_df=target)
         hybrid_rcomm_result = hybrid_model.execute_recommendation()
-        data_loader.write_json(hybrid_rcomm_result, 'hybrid_rcomm_results.json')
+        data_loader.write_json(hybrid_rcomm_result, target_str+'_hybrid_rcomm_results.json')
 
 
 if __name__ == '__main__':
