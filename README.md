@@ -62,6 +62,7 @@ https://arena.kakao.com/c/7
 <b>따라서, Windows 환경에서 실행해야 합니다.</b>
 
 <h3>사용 패키지</h3>
+
 * Python3 내장 패키지<br/>
 argparse, warnings, json, io, platform, os, collections<br/>
 * Python3 외장 패키지
