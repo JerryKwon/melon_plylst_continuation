@@ -11,6 +11,7 @@ https://arena.kakao.com/c/7
 <li><a href="#context">대회개요</a></li>
 <li><a href="#schedule">진행일정</a></li>
 <li><a href="#reference">참고자료</a></li>
+<li><a href="#repo-composit">Repo 구성</a></li>
 <li><a href="#execution">실행</a></li>
 <li><a href="#review">대회후기</a></li>
 </ol>
@@ -55,6 +56,27 @@ https://arena.kakao.com/c/7
     1. https://towardsdatascience.com/introduction-to-two-approaches-of-content-based-recommendation-system-fc797460c18c
     2. https://github.com/youonf/recommendation_system/tree/master/content_based_filtering
 
+<h2 id="repo-composit"> :open_file_folder: Repo 구성 </h2>
+
+* ./idea, \__pycache\__, venv: pycharm 프로젝트 구성 파일 디렉터리
+* /data: 학습 및 예측을 위한 데이터 적재 디렉터리 (w/o Mel-Spectogram) <br/>
+   **- .json 파일들(train,test,val,song_meta,genre_gn_all)의 용량 문제로 인해 학습 및 예측 수행 전 데이터 적재 필요!**
+* /result: 학습을 통해 예측을 수행한 결과 파일(.json)이 저장되는 디렉터리 <br/>
+   **- 저장 포맷: '[valid | test]_[hybrid | icbf]_rcomm_result.json'**
+* /web_driver: 한글 불용어 crawling을 위한 chrome webriver(chromedriver.exe) 실행파일 저장 디렉터리 <br/>
+   **- chrome webdriver version = 84 (실행 환경에 따른 driver 설치 필요)** <br/>
+   ※ chrome webdriver 버전 확인 - https://codechacha.com/ko/selenium-chromedriver-version-error/
+* inference.py: 학습 및 예측을 실행을 위한 python 파일 <br/>
+   **- 사용법은 <a href="#how-to-execute">실행-실행법</a> 참고**
+* train.py: 학습 실행을 위한 python 파일 <br/>
+   **- 사용법은 <a href="#how-to-execute">실행-실행법</a> 참고**
+* data_loader.py: 학습 데이터 로드를 위한 python 파일 (inference.py or train.py에서 실행 시 내부적으로 사용)
+* models.py: 학습에 사용될 model들을 저장하는 python 파일 <br/>
+   **- 예측에 사용되는 두 개의 모델이 각각 Class로 구분되어 저장되어있음.** <br/>
+   - 클래스 및 예측 모델 구성 (클래스명 - 모델명)
+       + ICBF_OCC - 아이템 기반 협업 필터링 (icbf)
+       - HYBRID_CBF_ICBF - 하이브리드 필터링 (Hybrid Filtering-CBF+ICBF+REMINDER)
+
 <h2 id="execution"> :exclamation: 실행 </h2>
 
 <h3><b>※주의</b></h3>
@@ -64,7 +86,7 @@ https://arena.kakao.com/c/7
 <h3>구현 알고리즘</h3>
 
 1. 아이템 기반 협업 필터링(Item-based Collaborative Filtering - icbf)
-2. Hybrid 필터링 방식 (Hybrid Filtering [ICBF+CBF+Reminder] - hybrid)
+2. **[제출] Hybrid 필터링 방식 (Hybrid Filtering [ICBF+CBF+Reminder] - hybrid)**
 
 <h3>사용 패키지</h3>
 
@@ -83,7 +105,7 @@ argparse, warnings, json, io, platform, os, collections<br/>
 <li>/webdriver 디렉터리에 한글 불용어 Crwaling을 위한 실행환경 버전에 맞는 chromedriver 설치 <br/> chrome webdriver 버전 확인 - https://codechacha.com/ko/selenium-chromedriver-version-error/</li>
 </ol>
 
-<h3>실행법</h3>
+<h3 id="how-to-execute">실행법</h3>
 
 * inference.py <br/>
     1. 설명 <br/>
@@ -121,14 +143,15 @@ argparse, warnings, json, io, platform, os, collections<br/>
             
 <h3>결과 파일</h3>
 
-**/result 아래, '[valid | test]_[hybrid | icbf]_rcomm_result.json' 형태로 결과값이 반환됨.**
+**/result 아래, '[valid | test]_[hybrid | icbf]_rcomm_result.json' 형태로 결과값이 반환됨.** <br/>
+e.g) test_hybrid_rcomm_result.json
 
 <h3>예측 결과</h3>
 
 * icbf <br/>
   valid LB - song - 0.159576 / tag - 0.340179 = 0.18666645 [61st in leaderboard]
 
-* hybrid <br/>
+* **[제출] hybrid** <br/>
   valid LB - song - 0.160008 / tag - 0.411810 = 0.197778 [55th in leaderboard]
             
 <h2 id="review"> :checkered_flag: 대회후기</h2>
