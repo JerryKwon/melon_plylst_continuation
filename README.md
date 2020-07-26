@@ -57,7 +57,7 @@ https://arena.kakao.com/c/7
 
 <h2 id="execution"> :exclamation: 실행 </h2>
 
-<h3>**_※주의_**</h3>
+<h3><b><i>※주의</i></b></h3>
 해당 프로젝트는 Windows, Linux 환경 모두에서 실행될 수 있도록 만들어졌으나, 시간 상의 이유로 Windows만 구동 테스트를 완료하였습니다.
 <u><b>따라서, Windows 환경에서 실행해야 합니다.</b></u>
 
