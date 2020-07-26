@@ -3,18 +3,20 @@
 <h2 id="context"> :pushpin: 대회 개요 </h2>
 https://arena.kakao.com/c/7
 
-주어진 플레이리스트와 동반된 노래정보(Metadata, Mel-Spectogram)을 활용하여 플레이리스트를 구성하는 #태그와 #노래를 예측하라 
+주어진 <U>**플레이리스트와 동반된 노래정보(Metadata, Mel-Spectogram)을 활용**</U>하여,<br/>
+<U>**"플레이리스트를 구성하는 #태그와 #노래를 예측하라"**</U>
 
 ## :clipboard: 목차
 <ol>
 <li><a href="#context">대회개요</a></li>
-<li><a href="schedule">진행일정</a></li>
-<li><a href="reference">참고자료</a></li>
-<li><a href="execution">실행방법</a></li>
+<li><a href="#schedule">진행일정</a></li>
+<li><a href="#reference">참고자료</a></li>
+<li><a href="#execution">실행</a></li>
+<li><a href="#review">대회후기</a></li>
 </ol>
 
 
-## :calendar: 진행일정
+<h2 id="schedule"> :calendar: 진행일정</h2>
 2020년 4월 27일(월) ~ 2020년 7월 26(일) [90일]
  
 ※ 실제 참가 시작일: 2020년 5월 2일(토)
@@ -32,7 +34,7 @@ https://arena.kakao.com/c/7
 * 11주차(7/13~7/19): Hybrid(CBF+ICBF) 알고리즘 구현 #1
 * 12주차(7/20~7/26): Hybrid(CBF+ICBF) 알고리즘 구현 #2, 제출 github repository 구현
 
-## :books: 참고자료
+<h2 id="reference"> :books: 참고자료 </h2>
 
 * 갈아먹는 추천 알고리즘 [1]~[6] <br/>
    https://yeomko.tistory.com/3?category=805638
@@ -53,72 +55,61 @@ https://arena.kakao.com/c/7
     1. https://towardsdatascience.com/introduction-to-two-approaches-of-content-based-recommendation-system-fc797460c18c
     2. https://github.com/youonf/recommendation_system/tree/master/content_based_filtering
 
-### 1. 대회에 대한 이해 :grey_question:
- - 대회가 원하는 결과 알고리즘은?
-	: 개요, 규칙, 데이터에 대한 개괄적인 이해
-	(https://dacon.io/competitions/official/229255/overview/)
-	
- - 분류 vs 회귀?
-	: 지도학습의 대표적인 두가지 목표에 대한 이해
+<h2 id="execution"> :exclamation: 실행 </h2>
 
- - 회귀 측정지표에 대한 이해
-	: 회귀 측정지표 종류, 지표별 사용 이유, 직접 만드는 나만의 측정지표
-	
-### 2. 탐색적 데이터 분석(EDA)
- - 탐색적 데이터 분석?
- 
- - EDA에서 고려하는 것들
-	1. 자료의 형태 이해
-		: 범주형 - (명목형,순서형), 수치형 - (이산형,연속형)
-		
-	2. null값과 이상치
+<h3><U>**※주의**</U></h3>
+해당 프로젝트는 Windows, Linux 환경 모두에서 실행될 수 있도록 만들어졌으나, 시간 상의 이유로 Windows만 구동 테스트를 완료하였습니다.
+<U>**따라서, Windows 환경에서 실행해야 합니다.**</U>
 
-	3. 데이터 시각화
-		* matplotlib.pyplot
-		* seaborn
-		* **plotly**
+<h3>사용 패키지</h3>
+* Python3 내장 패키지<br/>
+argparse, warnings, json, io, platform, os, collections
+* Python3 외장 패키지<br/>
+    * 데이터 조작 - pandas,numpy,sklearn,scipy 
+    * 진행상황 모니터링 - tqdm
+    * plylst_title 불용어 추출 - nltk,selenium
 
- - EDA를 활용한 퇴근시간 승차인원 데이터 셋 분석
- 
-### 3. Feature	 Engineering
- - 스케일링, 정규화
- - One-Hot Encoding
- - New feature creation
- 
-### 4. 분석모델 모델링
- - 머신러닝 기법
-	1. 선형 모델
-		: 릿지, 라쏘, 로지스틱 회귀
-	2. 트리 모델
-		: 결정 트리, 랜덤 포레스트
-	3. Boosting 모델의 이해
-	    * Bagging vs Boosting
-		* AdaBoost
-		* XgBoost
-		* LightGBM
-		
- - 교차검증(Cross vaildation)
- 
-### 5. 심화
- - Feature Engineering 심화
-	1. 상관관계
-	2. 이상치 처리 심화
-		* Multiple Imputation
-		* Regression Imputation
-	3. 차원 축소
-	4. high categorical variable 처리 방법
-		* Mean Encoding
-		* Frequency Encoding
-		
- - 순위권 코드 심화
-	: 스터디 진행 상황에 따라서 1,2,3등 코드 중 선정 및 클론코딩 진행
-	
-### 6. 고도화
-- Interpretable Machine Learning(lime)
-  : 머신러닝/딥러닝 모델의 신뢰도에 대한 해석
-  (http://research.sualab.com/introduction/2019/08/30/interpretable-machine-learning-overview-1.html)
-- Bayesian optimization
-  : Model의 Hyperparameter를 튜닝하는데 사용
-- SHAP
-  : 결과를 예측하는데 있어 Column의 영향도를 Insight
 
+<h3>실행 전 준비사항</h3>
+<ol>
+<li>실행을 위한 사용 패키지 설치</li>
+<li>/data 디렉터리에 사용되는 input data 적재(train.json, test.json, val.json, song_meta.json, genre_gn_all.json)</li>
+<li>/webdriver 디렉터리에 한글 불용어 Crwaling을 위한 실행환경 버전에 맞는 chromedriver 설치 <br/> chrome webdriver 버전 확인 - https://codechacha.com/ko/selenium-chromedriver-version-error/</li>
+</ol>
+
+<h3>실행법</h3>
+* inference.py
+    1. 설명 <br/>
+    주어진 데이터를 활용하여 예측을 수행하는 python 파일
+    2. 실행 <br/>
+    python inference.py --model_type hybrid --is_valid True
+    3. 옵션
+        * --model_type - [icbf | hybrid] <br/>
+        : 예측을 수행할 모델의 타입을 결정하는 파라미터. <br/>
+            * icbf: 아이템 기반 협업 필터링 방식을 통한 Recommendation 진행
+            * hybrid: 아이템 기반 협업 필터링 + 컨텐츠기반 필터링 + 예외처리 방식을 통한 Recommendation 진행
+        * --is_valid - boolean [True | False] <br/>
+        : 예측을 수행할 데이터 타입을 결정하는 파라미터 <br/>
+            * True: /data/val.json을 대상으로 하여 Recommendation 진행
+            * False: /data/test.json을 대상으로 하여 Recommendation 진행
+
+* train.py <br/>
+  <U>**※ 주의**</U> <br/>
+  **해당 프로젝트에서는 <U>pytorch, tensorflow, keras등의 학습을 통한 예측을 진행하지 않기 때문에, inference.py 와 동일함.</U>**
+   
+    1. 설명 <br/>
+    주어진 데이터를 활용하여 모델을 학습하는 python 파일 <br/>
+    
+    2. 실행 <br/>
+    python train.py --model_type hybrid --is_valid True
+    3. 옵션
+        * --model_type - [icbf | hybrid] <br/>
+        : 예측을 수행할 모델의 타입을 결정하는 파라미터. <br/>
+            * icbf: 아이템 기반 협업 필터링 방식을 통한 Recommendation 진행
+            * hybrid: 아이템 기반 협업 필터링 + 컨텐츠기반 필터링 + 예외처리 방식을 통한 Recommendation 진행
+        * --is_valid - boolean [True | False] <br/>
+        : 예측을 수행할 데이터 타입을 결정하는 파라미터 <br/>
+            * True: /data/val.json을 대상으로 하여 Recommendation 진행
+            * False: /data/test.json을 대상으로 하여 Recommendation 진행
+            
+<h2 id="review">대회 후기</h2>
