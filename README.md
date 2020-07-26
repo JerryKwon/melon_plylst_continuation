@@ -100,9 +100,9 @@ argparse, warnings, json, io, platform, os, collections<br/>
 
 <h3>실행 전 준비사항</h3>
 <ol>
-<li>실행을 위한 사용 패키지 설치</li>
-<li>/data 디렉터리에 사용되는 input data 적재(train.json, test.json, val.json, song_meta.json, genre_gn_all.json)</li>
-<li>/webdriver 디렉터리에 한글 불용어 Crwaling을 위한 실행환경 버전에 맞는 chromedriver 설치 <br/> chrome webdriver 버전 확인 - https://codechacha.com/ko/selenium-chromedriver-version-error/</li>
+<li>실행을 위한 <b>사용 패키지 설치</b></li>
+<li>/data 디렉터리에 사용되는 <b>input data 적재(train.json, test.json, val.json, song_meta.json, genre_gn_all.json)</b></li>
+<li>/webdriver 디렉터리에 한글 불용어 Crwaling을 위한 <b>실행환경의 버전에 맞는 chromedriver 설치</b><br/> ※ chrome webdriver 버전 확인 - https://codechacha.com/ko/selenium-chromedriver-version-error/</li>
 </ol>
 
 <h3 id="how-to-execute">실행법</h3>
