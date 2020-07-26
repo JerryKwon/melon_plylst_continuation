@@ -64,10 +64,10 @@ https://arena.kakao.com/c/7
 <h3>사용 패키지</h3>
 * Python3 내장 패키지<br/>
 argparse, warnings, json, io, platform, os, collections<br/>
-* Python3 외장 패키지<br/>
-    * 데이터 조작 - pandas,numpy,sklearn,scipy <br/>
-    * 진행상황 모니터링 - tqdm <br/>
-    * plylst_title 불용어 추출 - nltk,selenium <br/>
+* Python3 외장 패키지
+    - 데이터 조작 - pandas,numpy,sklearn,scipy <br/>
+    - 진행상황 모니터링 - tqdm <br/>
+    - plylst_title 불용어 추출 - nltk,selenium <br/>
 
 
 <h3>실행 전 준비사항</h3>
