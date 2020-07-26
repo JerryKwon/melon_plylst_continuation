@@ -121,7 +121,16 @@ argparse, warnings, json, io, platform, os, collections<br/>
         : 예측을 수행할 데이터 타입을 결정하는 파라미터 <br/>
             * True: /data/val.json을 대상으로 하여 Recommendation 진행
             * False: /data/test.json을 대상으로 하여 Recommendation 진행
-
+    4. 수행시간
+        * --model_type = icbf +  --is_valid = True <br/>
+            : 약 40분 ~ 1시간
+        * --model_type = icbf +  --is_valid = False <br/>
+            : 약 30분 ~ 40분
+        * --model_type = hybrid +  --is_valid = True <br/>
+            : 약 40분 ~ 1시간
+        * --model_type = hybrid +  --is_valid = False <br/>
+            : 약 30분 ~ 40분
+            
 * train.py <br/>
   **※ 주의** <br/>
     **해당 프로젝트에서는 pytorch, tensorflow, keras등의 학습 모델 생성을 통한 예측을 진행하지 않기 때문에, inference.py 와 동일함.**
@@ -140,6 +149,15 @@ argparse, warnings, json, io, platform, os, collections<br/>
         : 예측을 수행할 데이터 타입을 결정하는 파라미터 <br/>
             * True: /data/val.json을 대상으로 하여 Recommendation 진행
             * False: /data/test.json을 대상으로 하여 Recommendation 진행
+    4. 수행시간
+        * --model_type = icbf +  --is_valid = True <br/>
+            : 약 40분 ~ 1시간
+        * --model_type = icbf +  --is_valid = False <br/>
+            : 약 30분 ~ 40분
+        * --model_type = hybrid +  --is_valid = True <br/>
+            : 약 40분 ~ 1시간
+        * --model_type = hybrid +  --is_valid = False <br/>
+            : 약 30분 ~ 40분
             
 <h3>결과 파일</h3>
 
