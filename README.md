@@ -61,6 +61,11 @@ https://arena.kakao.com/c/7
 해당 프로젝트는 Windows, Linux 환경 모두에서 실행될 수 있도록 만들어졌으나, 시간 상의 이유로 Windows만 구동 테스트를 완료하였습니다.
 <b>따라서, Windows 환경에서 실행해야 합니다.</b>
 
+<h3>구현 알고리즘</h3>
+
+1. 아이템 기반 협업 필터링(Item-based Collaborative Filtering - icbf)
+2. Hybrid 필터링 방식 (Hybrid Filtering [ICBF+CBF+Reminder] - hybrid)
+
 <h3>사용 패키지</h3>
 
 * Python3 내장 패키지<br/>
@@ -114,5 +119,18 @@ argparse, warnings, json, io, platform, os, collections<br/>
             * True: /data/val.json을 대상으로 하여 Recommendation 진행
             * False: /data/test.json을 대상으로 하여 Recommendation 진행
             
-<h2 id="review">대회 후기</h2>
-추후 작성 예정
+<h3>결과 파일</h3>
+
+**/result 아래, '[valid | test]_[hybrid | icbf]_rcomm_result.json' 형태로 결과값이 반환됨.**
+
+<h3>예측 결과</h3>
+
+* icbf <br/>
+  valid LB - song - 0.159576 / tag - 0.340179 = 0.18666645 [61st in leaderboard]
+
+* hybrid <br/>
+  valid LB - song - 0.160008 / tag - 0.411810 = 0.197778 [55th in leaderboard]
+            
+<h2 id="review"> :checkered_flag: 대회후기</h2>
+
+**추후 작성 예정**
