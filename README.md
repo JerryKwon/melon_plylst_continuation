@@ -7,7 +7,7 @@ https://arena.kakao.com/c/7
 
 ## :clipboard: 목차
 <ol>
-<li><a href="context">대회개요</a></li>
+<li><a href="#context">대회개요</a></li>
 <li><a href="schedule">진행일정</a></li>
 <li><a href="reference">참고자료</a></li>
 <li><a href="execution">실행방법</a></li>
