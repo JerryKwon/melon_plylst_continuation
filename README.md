@@ -3,8 +3,8 @@
 <h2 id="context"> :pushpin: 대회 개요 </h2>
 https://arena.kakao.com/c/7
 
-주어진 <U>**플레이리스트와 동반된 노래정보(Metadata, Mel-Spectogram)을 활용**</U>하여,<br/>
-<U>**"플레이리스트를 구성하는 #태그와 #노래를 예측하라"**</U>
+주어진 **플레이리스트와 동반된 노래정보(Metadata, Mel-Spectogram)을 활용**하여,<br/>
+**"플레이리스트를 구성하는 #태그와 #노래를 예측하라"**
 
 ## :clipboard: 목차
 <ol>
@@ -57,17 +57,17 @@ https://arena.kakao.com/c/7
 
 <h2 id="execution"> :exclamation: 실행 </h2>
 
-<h3><b><i>※주의</i></b></h3>
+<h3><b>※주의</b></h3>
 해당 프로젝트는 Windows, Linux 환경 모두에서 실행될 수 있도록 만들어졌으나, 시간 상의 이유로 Windows만 구동 테스트를 완료하였습니다.
-<u><b>따라서, Windows 환경에서 실행해야 합니다.</b></u>
+<b>따라서, Windows 환경에서 실행해야 합니다.</b>
 
 <h3>사용 패키지</h3>
 * Python3 내장 패키지<br/>
-argparse, warnings, json, io, platform, os, collections
+argparse, warnings, json, io, platform, os, collections<br/>
 * Python3 외장 패키지<br/>
-    * 데이터 조작 - pandas,numpy,sklearn,scipy 
-    * 진행상황 모니터링 - tqdm
-    * plylst_title 불용어 추출 - nltk,selenium
+    * 데이터 조작 - pandas,numpy,sklearn,scipy <br/>
+    * 진행상황 모니터링 - tqdm <br/>
+    * plylst_title 불용어 추출 - nltk,selenium <br/>
 
 
 <h3>실행 전 준비사항</h3>
@@ -95,8 +95,8 @@ argparse, warnings, json, io, platform, os, collections
             * False: /data/test.json을 대상으로 하여 Recommendation 진행
 
 * train.py <br/>
-  <U>**※ 주의**</U> <br/>
-  **해당 프로젝트에서는 <U>pytorch, tensorflow, keras등의 학습을 통한 예측을 진행하지 않기 때문에, inference.py 와 동일함.</U>**
+  **※ 주의** <br/>
+    **해당 프로젝트에서는 pytorch, tensorflow, keras등의 학습 모델 생성을 통한 예측을 진행하지 않기 때문에, inference.py 와 동일함.**
    
     1. 설명 <br/>
     주어진 데이터를 활용하여 모델을 학습하는 python 파일 <br/>
@@ -114,3 +114,4 @@ argparse, warnings, json, io, platform, os, collections
             * False: /data/test.json을 대상으로 하여 Recommendation 진행
             
 <h2 id="review">대회 후기</h2>
+추후 작성 예정
