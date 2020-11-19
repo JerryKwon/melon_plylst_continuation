@@ -19,7 +19,7 @@ https://arena.kakao.com/c/7
 
 <h2 id="schedule"> :calendar: 진행일정</h2>
 2020년 4월 27일(월) ~ 2020년 7월 26(일) [90일]
- 
+
 ※ 실제 참가 시작일: 2020년 5월 2일(토)
 
 * 1주차(5/2~5/10): 추천시스템에 대한 이해
@@ -130,16 +130,18 @@ argparse, warnings, json, io, platform, os, collections<br/>
             : 약 40분 ~ 1시간
         * --model_type = hybrid +  --is_valid = False <br/>
             : 약 30분 ~ 40분
-            
+    
 * train.py <br/>
   **※ 주의** <br/>
     **해당 프로젝트에서는 pytorch, tensorflow, keras등의 학습 모델 생성을 통한 예측을 진행하지 않기 때문에, inference.py 와 동일함.**
-   
+  
     1. 설명 <br/>
-    주어진 데이터를 활용하여 모델을 학습하는 python 파일 <br/>
-    
+  
+      주어진 데이터를 활용하여 모델을 학습하는 python 파일 <br/>
+  
     2. 실행 <br/>
-    python train.py --model_type hybrid --is_valid True
+  
+      python train.py --model_type hybrid --is_valid True
     3. 옵션
         * --model_type - [icbf | hybrid] <br/>
         : 예측을 수행할 모델의 타입을 결정하는 파라미터. <br/>
@@ -174,4 +176,113 @@ e.g) test_hybrid_rcomm_result.json
             
 <h2 id="review"> :checkered_flag: 대회후기</h2>
 
-**추후 작성 예정**
+대회 종료후 약 4개월만에 우승자 코드를 리뷰할 수 있는 시간이 있어서 대회 후기를 작성하려 한다.
+
+
+
+우선, 대회를 진행함에 있어서 신경망을 설계하고 훈련하는데 있어서 모르는것이 많았다. 그래서 신경망을 사용하지 않는 전통적인 방식인 CF(Collaborative Filtering)와 CBF(Contents-Based Filtering)으로 Recommendation을 수행했다.
+
+
+
+CF와 CBF를 Recommendation에 있어서 동시에 사용한 이유는 CF만을 사용했을때에 발생하는 문제점 때문이다. 일반적으로 CF 방식을 활용한 Recommendation은 성능이 나쁘지 않다. 왜냐하면 특정 사용자의 선호를 바탕으로 유사도를 분석하여 유사한 아이템을 추천하기 때문이다.
+
+그러나 '특정 사용자의 선호'가 없는 경우는 어떤 정보를 기반으로 추천할 것인가? 이렇게 사용자에 대한 사전 지식이 없는 경우 추천의 성능이 떨어지는 현상을 'Cold Start Problem'라고 한다.
+
+* About Cold Start Problem
+
+  + https://yuspify.com/blog/cold-start-problem-recommender-systems/
+
+  + https://kojinoshiba.com/recsys-cold-start/
+  + https://towardsdatascience.com/solving-cold-user-problem-for-recommendation-system-using-multi-armed-bandit-d36e42fe8d44
+
+이와 같은 문제를 해결하기 위해서는 여러가지 방법(가장 대중적인 item을 추천, Contents-Based, MAB, DropoutNet)이 있다. 그러나 이 중 상대적으로 쉽게 구현할 수 있는 다른 Metadata를 활용한 Contents-Based 방식을 활용하여 문제에 직면하여 예측할 수 없는 사용자에 대해 추천을 진행했다.
+
+
+
+그리고, CF 방식을 활용함에 있어서 위의 문제 말고도 'Filter Bubble 현상'이 발생할 수 있다고 한다. Filter Bubble은 쉽게 말해 특정 User에 대해 Recommendation을 진행할 수록 특정 유사한 취향에 대해서만 추천이 이루어지는 것을 말한다. 
+
+*  About Filter bubble Problem
+  + https://choosetoencrypt.com/tech/collaborative-filtering/
+
+
+
+이 대회를 통해 느낀점은 복잡한 모델이 좋은 score로 이어지지 않는다는 것이다. 오히려 기본적으로 사용되는 MF와 CF 등이 좋은 성능을 보였다. 그리고 복잡한 모델은 워낙 데이터의 양이 커서 Memory Leakage 문제에 부딪혀서 활용할 수 없었다. 따라서, 보수적으로 문제 해결에 있어서 가능한 간단한 모델을 사용해보고, 성능이 좋은 방식에서 발전시켜 문제를 해결해야 함을 느꼈다.
+
+
+
+* 대회 참가자 대상 research 자료
+
+  https://arena.kakao.com/forum/topics/295
+
+
+<div style="margin-top:10px" align="center">
+	<img src="imgs/participants_score_dist.png">
+	<p><b>참가자 점수 분포</b></p>
+</div>
+
+<div style="margin-top:10px" align="center">
+	<img src="imgs/utilized_models.png">
+	<p><b>참가자 사용 모델</b></p>
+</div>
+
+<div style="margin-top:10px" align="center">
+	<img src="imgs/high_perf_models.png">
+	<p><b>성능 수준별 사용 모델</b></p>
+</div>
+
+
+대회의 5등 코드를 먼저 살펴보았다. 여기서는 Autoencoder와 W2V모델로 embedding한 vector를 CF와 유사하게 유사도를 계산하여 상위 k개의 유사한 playlist에서 곡과 태그를 반환했다. 이를 따지고 보면 간단하게 도입할 수 있는 모델에서 AE나 w2v모델을 활용하여 develop하였다고 볼 수 있다.
+
+
+
+다른 우승자 코드를 더 살펴보기 전에 참가자들 대상으로 실시한 조사에서 언급된 추천 논문들을 읽어보려고 한다.  
+
+
+
+**\* Auto Encoder**
+
+\* MMCF: Multimodal Collaborative Filtering for Automatic Playlist Continuation, https://dl.acm.org/doi/10.1145/3267471.3267482
+
+ \* Using Adversarial Autoencoders for Multi-Modal Automatic Playlist Continuation, https://zenodo.org/record/1455214/files/Vagliano-et-al-Using-Adversarial-Autoencoders-for-Multi-Modal-Automatic-Playlist-Continuation.pdf?download=1
+
+ \* A Hybrid Variational Autoencoder for Collaborative Filtering, https://www.kdd.org/kdd2018/files/deep-learning-day/DLDay18_paper_45.pdf
+
+ \* Training Deep AutoEncoders for Collaborative Filtering, https://arxiv.org/abs/1708.01715
+
+
+
+**\* k-NN**
+
+ \* Efficient K-NN for Playlist Continuation, https://eprints.sztaki.hu/9560/1/Kelen_1_30347064_ny.pdf
+
+
+
+**\* Matrix Factorization** 
+
+ \* Neural Collaborative Filtering vs Matrix Factorization Revisited, https://arxiv.org/pdf/2005.09683.pdf
+
+ \* https://yeomko.tistory.com/5
+
+
+
+**\* Deep Learning**
+
+ \* Deep Neural Networks for YouTube Recommendations, https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf
+
+ \* Deep Learning in Natural Language Processing.pdf, http://ling.snu.ac.kr/class/AI_Agent/deep_learning_for_nlp.pdf
+
+ \* Taming Pretrained Transformers for Extreme Multi-label Text Classification, https://arxiv.org/pdf/1905.02331v4.pdf
+
+ \* Convolutional recurrent neural networks for music classification, https://arxiv.org/pdf/1609.04243.pdf
+
+
+
+**\* ETC**
+
+ \* Spotify’s Recommendation Engine, https://ischools.org/resources/Documents/Discipline%20of%20organizing/Case%20Studies/Spotify-Ngo2019.pdf
+
+ 
+
+ 
+
+ 
